@@ -10,4 +10,8 @@ public interface TodoService {
 
 	void createNewTodo(String text);
 
+	void close(int todoId);
+
+	void open(int todoId);
+
 }

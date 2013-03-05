@@ -25,4 +25,12 @@ public class InMemoryTodoServiceImpl implements TodoService {
 		todos.add(todo);
 	}
 
+	public void close(int todoId) {
+		todos.get(todoId - 1).setDone(true);
+	}
+
+	public void open(int todoId) {
+		todos.get(todoId - 1).setDone(false);
+	}
+
 }
