@@ -12,16 +12,16 @@
 	Current todo items: 
 	<c:forEach items="${todos}" var="todo" varStatus="row">
 		${row.count} - ${todo.text} - ${todo.done}
-		<form action="close.html">
+		<form action="close.html" method="post">
 			<input name="todoId" value="${row.count} " type="hidden">
 			<input type="submit" value="Close">
 		</form> 
-		<form action="open.html">
+		<form action="open.html" method="post">
 			<input name="todoId" value="${row.count} " type="hidden">
 			<input type="submit" value="Open">
 		</form> 
 	</c:forEach>
-	<form action="create.html">
+	<form action="create.html" method="post">
 		<input name="text">
 		<input type="submit" value="Create">
 	</form>
