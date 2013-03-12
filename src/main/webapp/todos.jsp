@@ -11,13 +11,13 @@
 	<h1>Todo Application</h1>
 	Current todo items: 
 	<c:forEach items="${todos}" var="todo" varStatus="row">
-		${row.count} - ${todo.text} - ${todo.done}
+		${todo.id} - ${todo.text} - ${todo.done}
 		<form action="close.html" method="post">
-			<input name="todoId" value="${row.count} " type="hidden">
+			<input name="todoId" value="${todo.id}" type="hidden">
 			<input type="submit" value="Close">
 		</form> 
 		<form action="open.html" method="post">
-			<input name="todoId" value="${row.count} " type="hidden">
+			<input name="todoId" value="${todo.id}" type="hidden">
 			<input type="submit" value="Open">
 		</form> 
 	</c:forEach>

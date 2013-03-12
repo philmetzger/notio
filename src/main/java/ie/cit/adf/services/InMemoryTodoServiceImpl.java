@@ -19,18 +19,45 @@ public class InMemoryTodoServiceImpl implements TodoService {
 		return todos;
 	}
 
-	public void createNewTodo(String text) {
+	public String createNewTodo(String text) {
 		Todo todo = new Todo();
 		todo.setText(text);
 		todos.add(todo);
+		return todo.getId();
 	}
 
-	public void close(int todoId) {
-		todos.get(todoId - 1).setDone(true);
+	public void close(String todoId) {
+		for (Todo todo : todos) {
+			if (todo.getId().equals(todoId)) {
+				todo.setDone(true);
+			}
+		}
 	}
 
-	public void open(int todoId) {
-		todos.get(todoId - 1).setDone(false);
+	public void open(String todoId) {
+		for (Todo todo : todos) {
+			if (todo.getId().equals(todoId)) {
+				todo.setDone(false);
+			}
+		}
 	}
 
+	public Todo get(String todoId) {
+		for (Todo todo : todos) {
+			if (todo.getId().equals(todoId)) {
+				return todo;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void delete(String todoId) {
+		for (Todo todo : todos) {
+			if (todo.getId().equals(todoId)) {
+				todos.remove(todo);
+				break;
+			}
+		}
+	}
 }

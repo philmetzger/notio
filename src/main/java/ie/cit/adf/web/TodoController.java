@@ -18,7 +18,7 @@ public class TodoController {
 		model.addAttribute("todos", todoService.getAllTodos());
 		return "todos.jsp";
 	}
-	
+
 	@RequestMapping("create")
 	public String create(@RequestParam String text, Model model) {
 		todoService.createNewTodo(text);
@@ -27,17 +27,16 @@ public class TodoController {
 	}
 
 	@RequestMapping("close")
-	public String close(@RequestParam int todoId, Model model) {
+	public String close(@RequestParam String todoId, Model model) {
 		todoService.close(todoId);
 		model.addAttribute("todos", todoService.getAllTodos());
 		return "todos.jsp";
 	}
-	
+
 	@RequestMapping("open")
-	public String open(@RequestParam int todoId, Model model) {
+	public String open(@RequestParam String todoId, Model model) {
 		todoService.open(todoId);
 		model.addAttribute("todos", todoService.getAllTodos());
 		return "todos.jsp";
 	}
-
 }

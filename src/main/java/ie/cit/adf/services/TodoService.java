@@ -8,10 +8,14 @@ public interface TodoService {
 
 	List<Todo> getAllTodos();
 
-	void createNewTodo(String text);
+	String createNewTodo(String text);
 
-	void close(int todoId);
+	void close(String todoId);
 
-	void open(int todoId);
+	void open(String todoId);
+
+	Todo get(String todoId);
+
+	void delete(String todoId);
 
 }
