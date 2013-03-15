@@ -8,7 +8,7 @@ public interface TodoService {
 
 	List<Todo> getAllTodos();
 
-	String createNewTodo(String text);
+	Todo createNewTodo(String text);
 
 	void close(String todoId);
 

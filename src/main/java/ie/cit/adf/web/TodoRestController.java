@@ -50,10 +50,10 @@ public class TodoRestController {
 	@ResponseBody
 	public void create(@RequestParam String text, HttpServletRequest req,
 			HttpServletResponse resp) {
-		String id = todoService.createNewTodo(text);
+		Todo todo= todoService.createNewTodo(text);
 		StringBuffer url = req.getRequestURL().append("/{id}");
 		UriTemplate uriTemplate = new UriTemplate(url.toString());
-		resp.addHeader("location", uriTemplate.expand(id).toASCIIString());
+		resp.addHeader("location", uriTemplate.expand(todo.getId()).toASCIIString());
 	}
 
 	// curl -X DELETE -i http://localhost:8080/todo-app/api/todo/{id}
