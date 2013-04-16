@@ -5,6 +5,9 @@ import ie.cit.adf.domain.dao.TodoRepository;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
+@Transactional
 public class TodoServiceImpl implements TodoService {
 	private TodoRepository repo;
 

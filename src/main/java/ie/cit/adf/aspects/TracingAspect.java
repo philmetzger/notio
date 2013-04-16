@@ -13,7 +13,6 @@ public class TracingAspect {
 	@Before(value="execution(* ie.cit.adf.domain.dao..*.*(..))")
 	public void trace(JoinPoint jp) {
 		Log log = LogFactory.getLog(jp.getTarget().getClass());
-	
 		String className = jp.getTarget().getClass().getName();
 		String methodName = jp.getSignature().getName();
 		log.debug("Method invoked:"+className +"#"+methodName);
