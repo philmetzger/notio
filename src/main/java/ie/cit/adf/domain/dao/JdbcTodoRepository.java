@@ -10,7 +10,10 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
 
+@Secured("ROLE_USER")
 public class JdbcTodoRepository implements TodoRepository {
 
 	private JdbcTemplate jdbcTemplate;
@@ -28,14 +31,19 @@ public class JdbcTodoRepository implements TodoRepository {
 
 	@Override
 	public List<Todo> getAll() {
-		return jdbcTemplate
-				.query("SELECT ID, TEXT, DONE FROM TODO", todoMapper);
+		return jdbcTemplate.query(
+				"SELECT ID, TEXT, DONE FROM TODO WHERE OWNER=?", todoMapper,
+				getCurrentUser());
 	}
 
 	@Override
 	public void add(Todo todo) {
-		jdbcTemplate.update("INSERT INTO TODO VALUES(?,?,?)", todo.getId(),
-				todo.getText(), todo.isDone());
+		jdbcTemplate.update("INSERT INTO TODO VALUES(?,?,?,?)", todo.getId(),
+				todo.getText(), getCurrentUser(), todo.isDone());
+	}
+
+	private String getCurrentUser() {
+		return SecurityContextHolder.getContext().getAuthentication().getName();
 	}
 
 	@Override
