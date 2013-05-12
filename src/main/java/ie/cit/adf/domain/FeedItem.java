@@ -1,17 +1,26 @@
 package ie.cit.adf.domain;
 
 import java.util.UUID;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "todo")
-public class Todo {
+@XmlRootElement(name = "feeditem")
+public class FeedItem {
+	
 	private String id;
 	private String text;
-	private boolean done;
+	private String category;
+	private String author;
 
-	public Todo() {
+	public FeedItem() {
 		id = UUID.randomUUID().toString();
+	}
+	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getText() {
@@ -22,12 +31,12 @@ public class Todo {
 		this.text = text;
 	}
 
-	public boolean isDone() {
-		return done;
+	public String getAuthor() {
+		return author;
 	}
 
-	public void setDone(boolean done) {
-		this.done = done;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
 	public String getId() {
